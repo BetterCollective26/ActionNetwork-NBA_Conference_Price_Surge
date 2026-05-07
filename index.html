@@ -449,6 +449,55 @@
       line-height:1.5;
     }
 
+
+
+    /* Mobile iframe fix: let the iframe document itself scroll on small screens.
+       This keeps the WordPress iframe height fixed at 2350px, but prevents mobile
+       content from being cut off when the mobile layout is taller than desktop. */
+    html {
+      overflow-x: hidden;
+    }
+
+    body {
+      min-height: 100%;
+      overflow-x: hidden;
+    }
+
+    @media (max-width:640px) {
+      html,
+      body {
+        height: auto;
+        min-height: 100%;
+        overflow-y: auto;
+        overflow-x: hidden;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: thin;
+        scrollbar-color: var(--an-green) #eaf6ee;
+      }
+
+      body::-webkit-scrollbar {
+        width: 10px;
+      }
+
+      body::-webkit-scrollbar-track {
+        background: #eaf6ee;
+      }
+
+      body::-webkit-scrollbar-thumb {
+        background: var(--an-green);
+        border-radius: 999px;
+        border: 2px solid #eaf6ee;
+      }
+
+      body::-webkit-scrollbar-thumb:hover {
+        background: var(--an-green-dark);
+      }
+
+      .an-section {
+        overflow: visible;
+      }
+    }
+
     @media (max-width:640px) {
       .an-section-head {
         padding:16px 16px 14px;
