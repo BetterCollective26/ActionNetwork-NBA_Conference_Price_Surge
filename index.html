@@ -509,11 +509,18 @@
 
       /*
         Keep the whole widget surface vertically draggable on mobile.
-        Horizontal table scrolling still works because the JS below only takes over
-        when the gesture is clearly vertical.
+        Important: tables/overflow containers often capture touches in the centre
+        of the widget, so disable native touch handling there and let the small
+        JS controller below decide whether the user wants vertical page scroll or
+        horizontal table swipe.
       */
+      .an-mobile-scroll-shell,
+      .an-mobile-scroll-shell * {
+        touch-action:none;
+      }
+
       .an-mobile-scroll-shell .table-wrap {
-        touch-action:pan-x pan-y;
+        overscroll-behavior:contain;
       }
 
       .an-mobile-scroll-shell::-webkit-scrollbar {
@@ -951,40 +958,83 @@
         let startY = 0;
         let startX = 0;
         let startScrollTop = 0;
-        let verticalDrag = false;
+        let startScrollLeft = 0;
+        let activeTableWrap = null;
+        let gesture = null;
 
-        shell.addEventListener('touchstart', function (event) {
-          if (!isMobile() || !event.touches || event.touches.length !== 1) return;
-          const touch = event.touches[0];
-          startY = touch.clientY;
-          startX = touch.clientX;
+        function getPoint(event) {
+          if (event.touches && event.touches.length === 1) return event.touches[0];
+          if (event.changedTouches && event.changedTouches.length === 1) return event.changedTouches[0];
+          return event;
+        }
+
+        function beginDrag(event) {
+          if (!isMobile()) return;
+          const point = getPoint(event);
+          if (!point) return;
+
+          const target = event.target;
+          if (!target || !shell.contains(target)) return;
+
+          startY = point.clientY;
+          startX = point.clientX;
           startScrollTop = shell.scrollTop;
-          verticalDrag = false;
-        }, { passive: true, capture: true });
+          activeTableWrap = target.closest ? target.closest('.table-wrap') : null;
+          startScrollLeft = activeTableWrap ? activeTableWrap.scrollLeft : 0;
+          gesture = null;
+        }
 
-        shell.addEventListener('touchmove', function (event) {
-          if (!isMobile() || !event.touches || event.touches.length !== 1) return;
+        function moveDrag(event) {
+          if (!isMobile()) return;
+          const point = getPoint(event);
+          if (!point || !shell.contains(event.target)) return;
 
-          const touch = event.touches[0];
-          const deltaY = startY - touch.clientY;
-          const deltaX = startX - touch.clientX;
+          const deltaY = startY - point.clientY;
+          const deltaX = startX - point.clientX;
+          const absY = Math.abs(deltaY);
+          const absX = Math.abs(deltaX);
 
-          if (!verticalDrag && Math.abs(deltaY) > 6 && Math.abs(deltaY) > Math.abs(deltaX)) {
-            verticalDrag = true;
+          if (!gesture && (absY > 6 || absX > 6)) {
+            gesture = absY >= absX ? 'vertical' : 'horizontal';
           }
 
-          if (verticalDrag) {
+          if (gesture === 'vertical') {
             event.preventDefault();
+            event.stopPropagation();
             shell.scrollTop = startScrollTop + deltaY;
+            return;
           }
-        }, { passive: false, capture: true });
+
+          if (gesture === 'horizontal' && activeTableWrap) {
+            event.preventDefault();
+            event.stopPropagation();
+            activeTableWrap.scrollLeft = startScrollLeft + deltaX;
+          }
+        }
+
+        function endDrag() {
+          gesture = null;
+          activeTableWrap = null;
+        }
+
+        /*
+          Attach to both the shell and the document in capture phase. This matters
+          on mobile because inner overflow/table elements can otherwise swallow
+          touchmove events before the scroll shell sees them.
+        */
+        [shell, document].forEach(target => {
+          target.addEventListener('touchstart', beginDrag, { passive:false, capture:true });
+          target.addEventListener('touchmove', moveDrag, { passive:false, capture:true });
+          target.addEventListener('touchend', endDrag, { passive:true, capture:true });
+          target.addEventListener('touchcancel', endDrag, { passive:true, capture:true });
+        });
 
         shell.addEventListener('wheel', function (event) {
           if (!isMobile()) return;
           if (Math.abs(event.deltaY) <= Math.abs(event.deltaX)) return;
           event.preventDefault();
           shell.scrollTop += event.deltaY;
-        }, { passive: false, capture: true });
+        }, { passive:false, capture:true });
       }
 
       if (document.readyState === 'loading') {
