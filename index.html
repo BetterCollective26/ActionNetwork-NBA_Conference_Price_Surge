@@ -502,8 +502,18 @@
         overflow-x:hidden;
         -webkit-overflow-scrolling:touch;
         overscroll-behavior:contain;
+        touch-action:pan-y;
         scrollbar-width:thin;
         scrollbar-color:var(--an-green) #eaf6ee;
+      }
+
+      /*
+        Keep the whole widget surface vertically draggable on mobile.
+        Horizontal table scrolling still works because the JS below only takes over
+        when the gesture is clearly vertical.
+      */
+      .an-mobile-scroll-shell .table-wrap {
+        touch-action:pan-x pan-y;
       }
 
       .an-mobile-scroll-shell::-webkit-scrollbar {
@@ -923,6 +933,64 @@
       const iframeHeight = params.get('iframeHeight') || params.get('height');
       if (iframeHeight && /^\d{3,5}$/.test(iframeHeight)) {
         document.documentElement.style.setProperty('--an-mobile-iframe-height', iframeHeight + 'px');
+      }
+
+      /*
+        Mobile fixed-iframe drag fix
+        --------------------------------
+        In WordPress, the parent iframe can be fixed height and set to scrolling="no".
+        Some mobile browsers then only let the user scroll when they drag the outer
+        scrollbar/gutter. This makes the entire widget surface vertically draggable.
+        Horizontal table swipes are preserved by only taking over mostly-vertical drags.
+      */
+      function enableFullSurfaceMobileScroll() {
+        const shell = document.querySelector('[data-mobile-scroll-shell]');
+        if (!shell) return;
+
+        const isMobile = () => window.matchMedia('(max-width: 640px)').matches;
+        let startY = 0;
+        let startX = 0;
+        let startScrollTop = 0;
+        let verticalDrag = false;
+
+        shell.addEventListener('touchstart', function (event) {
+          if (!isMobile() || !event.touches || event.touches.length !== 1) return;
+          const touch = event.touches[0];
+          startY = touch.clientY;
+          startX = touch.clientX;
+          startScrollTop = shell.scrollTop;
+          verticalDrag = false;
+        }, { passive: true, capture: true });
+
+        shell.addEventListener('touchmove', function (event) {
+          if (!isMobile() || !event.touches || event.touches.length !== 1) return;
+
+          const touch = event.touches[0];
+          const deltaY = startY - touch.clientY;
+          const deltaX = startX - touch.clientX;
+
+          if (!verticalDrag && Math.abs(deltaY) > 6 && Math.abs(deltaY) > Math.abs(deltaX)) {
+            verticalDrag = true;
+          }
+
+          if (verticalDrag) {
+            event.preventDefault();
+            shell.scrollTop = startScrollTop + deltaY;
+          }
+        }, { passive: false, capture: true });
+
+        shell.addEventListener('wheel', function (event) {
+          if (!isMobile()) return;
+          if (Math.abs(event.deltaY) <= Math.abs(event.deltaX)) return;
+          event.preventDefault();
+          shell.scrollTop += event.deltaY;
+        }, { passive: false, capture: true });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', enableFullSurfaceMobileScroll);
+      } else {
+        enableFullSurfaceMobileScroll();
       }
     })();
   </script>
