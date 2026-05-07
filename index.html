@@ -451,50 +451,84 @@
 
 
 
-    /* Mobile iframe fix: let the iframe document itself scroll on small screens.
-       This keeps the WordPress iframe height fixed at 2350px, but prevents mobile
-       content from being cut off when the mobile layout is taller than desktop. */
-    html {
-      overflow-x: hidden;
+    /*
+      Mobile fixed-iframe safety fix
+      --------------------------------
+      WordPress/Classic Editor embeds often use a fixed iframe height, e.g. 2350px,
+      and may also set scrolling="no". In that setup, relying on the iframe body
+      to scroll is unreliable on mobile because the parent iframe can clip anything
+      taller than its fixed height.
+
+      The dedicated wrapper below creates an internal scroll area ONLY on mobile.
+      So desktop stays fully expanded, while mobile gets a branded vertical green
+      scrollbar inside the hosted widget when the mobile layout needs more height.
+    */
+
+    html,
+    body {
+      width:100%;
+      max-width:100%;
+      overflow-x:hidden;
     }
 
-    body {
-      min-height: 100%;
-      overflow-x: hidden;
+    .an-mobile-scroll-shell {
+      width:100%;
+      max-width:100%;
+      background:#fff;
     }
 
     @media (max-width:640px) {
+      :root {
+        /* Match this to the iframe height used in the landing page embed. */
+        --an-mobile-iframe-height:2350px;
+      }
+
       html,
       body {
-        height: auto;
-        min-height: 100%;
-        overflow-y: auto;
-        overflow-x: hidden;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: thin;
-        scrollbar-color: var(--an-green) #eaf6ee;
+        height:auto;
+        min-height:0;
+        overflow:hidden;
+        overscroll-behavior:contain;
       }
 
-      body::-webkit-scrollbar {
-        width: 10px;
+      body {
+        background:#fff;
       }
 
-      body::-webkit-scrollbar-track {
-        background: #eaf6ee;
+      .an-mobile-scroll-shell {
+        height:var(--an-mobile-iframe-height);
+        max-height:var(--an-mobile-iframe-height);
+        overflow-y:auto;
+        overflow-x:hidden;
+        -webkit-overflow-scrolling:touch;
+        overscroll-behavior:contain;
+        scrollbar-width:thin;
+        scrollbar-color:var(--an-green) #eaf6ee;
       }
 
-      body::-webkit-scrollbar-thumb {
-        background: var(--an-green);
-        border-radius: 999px;
-        border: 2px solid #eaf6ee;
+      .an-mobile-scroll-shell::-webkit-scrollbar {
+        width:10px;
       }
 
-      body::-webkit-scrollbar-thumb:hover {
-        background: var(--an-green-dark);
+      .an-mobile-scroll-shell::-webkit-scrollbar-track {
+        background:#eaf6ee;
+      }
+
+      .an-mobile-scroll-shell::-webkit-scrollbar-thumb {
+        background:var(--an-green);
+        border-radius:999px;
+        border:2px solid #eaf6ee;
+      }
+
+      .an-mobile-scroll-shell::-webkit-scrollbar-thumb:hover {
+        background:var(--an-green-dark);
       }
 
       .an-section {
-        overflow: visible;
+        min-height:100%;
+        overflow:visible;
+        border-left:0;
+        border-right:0;
       }
     }
 
@@ -554,6 +588,7 @@
 
 </head>
 <body>
+  <div class="an-mobile-scroll-shell" data-mobile-scroll-shell>
   <section class="an-section" aria-label="NBA Conference Finals family cost section">
     <header class="an-section-head">
       <span class="an-eyebrow">Conference Finals Update</span>
@@ -879,7 +914,19 @@
       </p>
     </div>
   </section>
+  </div>
   
+
+  <script>
+    (function () {
+      const params = new URLSearchParams(window.location.search);
+      const iframeHeight = params.get('iframeHeight') || params.get('height');
+      if (iframeHeight && /^\d{3,5}$/.test(iframeHeight)) {
+        document.documentElement.style.setProperty('--an-mobile-iframe-height', iframeHeight + 'px');
+      }
+    })();
+  </script>
+
   <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
   <script>
     function parseCellValue(cell, type) {
