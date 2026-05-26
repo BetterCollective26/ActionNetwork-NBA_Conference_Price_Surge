@@ -1,0 +1,1093 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Action Network | Knicks vs Cavaliers Playoff Premium Assets</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=Barlow+Condensed:wght@500;600;700;800;900&display=swap');
+
+    :root{
+      --an-navy:#101820;
+      --an-navy-2:#152630;
+      --an-green:#00b67a;
+      --an-green-bright:#00e09a;
+      --an-green-dark:#00865b;
+      --an-border:#dfe7e3;
+      --an-border-2:#cfd8d3;
+      --an-bg:#ffffff;
+      --an-bg2:#f7faf8;
+      --an-text:#20252a;
+      --an-muted:#6d7880;
+      --nyk-blue:#0b4ea2;
+      --nyk-orange:#f58426;
+      --cle-wine:#6f263d;
+      --cle-gold:#ffb81c;
+      --an-serif:'Source Serif 4', Georgia, serif;
+      --an-display:'Barlow Condensed', system-ui, sans-serif;
+    }
+
+    *{ box-sizing:border-box; }
+
+    html,
+    body{
+      margin:0;
+      padding:0;
+      background:#eef4f1;
+      color:var(--an-text);
+      font-family:var(--an-serif);
+      -webkit-font-smoothing:antialiased;
+      text-rendering:geometricPrecision;
+    }
+
+    body{
+      overflow-x:auto;
+      scrollbar-width:thin;
+      scrollbar-color:var(--an-green) transparent;
+    }
+
+    body::-webkit-scrollbar{ width:6px; height:6px; }
+    body::-webkit-scrollbar-track{ background:transparent; }
+    body::-webkit-scrollbar-thumb{ background:var(--an-green); border-radius:99px; }
+    body::-webkit-scrollbar-thumb:hover{ background:var(--an-green-bright); }
+
+    .an-page{
+      width:100%;
+      max-width:760px;
+      margin:0 auto;
+      padding:16px;
+    }
+
+    .an-intro{
+      margin:0 0 16px;
+      padding:18px 20px;
+      background:#fff;
+      border:1px solid var(--an-border);
+      border-left:5px solid var(--an-green);
+      box-shadow:0 8px 20px rgba(16,24,32,.06);
+    }
+
+    .an-intro h1{
+      margin:0 0 8px;
+      font-family:var(--an-display);
+      font-size:32px;
+      line-height:1;
+      font-weight:900;
+      letter-spacing:.02em;
+      text-transform:uppercase;
+      color:#101820;
+    }
+
+    .an-intro p{
+      margin:0;
+      color:#4b5563;
+      font-size:14px;
+      line-height:1.55;
+    }
+
+    .an-asset-shell{
+      margin:0 0 24px;
+    }
+
+    .an-download-row{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      margin:0 0 10px;
+    }
+
+    .an-download-row strong{
+      font-family:var(--an-display);
+      font-size:16px;
+      line-height:1;
+      font-weight:900;
+      letter-spacing:.06em;
+      text-transform:uppercase;
+      color:#101820;
+    }
+
+    .an-btn{
+      appearance:none;
+      border:1px solid rgba(0,0,0,.08);
+      background:var(--an-green);
+      color:#071628;
+      cursor:pointer;
+      padding:10px 14px;
+      font-family:var(--an-display);
+      font-size:13px;
+      line-height:1;
+      font-weight:900;
+      letter-spacing:.06em;
+      text-transform:uppercase;
+    }
+
+    .an-btn:hover{ background:var(--an-green-bright); }
+
+    .an-graphic{
+      width:100%;
+      max-width:720px;
+      margin:0 auto;
+      background:#fff;
+      border:1px solid rgba(0,182,122,.16);
+      overflow:hidden;
+      box-shadow:0 12px 30px rgba(16,24,32,.08);
+    }
+
+    .an-graphic.is-exporting{
+      width:720px !important;
+      max-width:720px !important;
+      box-shadow:none !important;
+      overflow:visible !important;
+      border-color:#dfe7e3 !important;
+    }
+
+    .an-top{
+      position:relative;
+      min-height:118px;
+      padding:22px 178px 20px 22px;
+      color:#fff;
+      background:
+        radial-gradient(circle at 92% 12%, rgba(0,224,154,.18), transparent 34%),
+        linear-gradient(90deg, #071628 0%, #0a1830 38%, #0b3c36 100%);
+      border-bottom:5px solid var(--an-green);
+      overflow:hidden;
+    }
+
+    .an-kicker{
+      display:inline-flex;
+      align-items:center;
+      margin:0 0 12px;
+      padding:7px 12px;
+      background:var(--an-green);
+      color:#071628;
+      font-family:var(--an-display);
+      font-size:12px;
+      line-height:1;
+      font-weight:900;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+    }
+
+    .an-top h2{
+      margin:0;
+      max-width:490px;
+      font-family:var(--an-display);
+      font-size:clamp(26px, 5vw, 40px);
+      line-height:.95;
+      font-weight:900;
+      letter-spacing:.01em;
+      text-transform:uppercase;
+    }
+
+    .an-top p{
+      margin:8px 0 0;
+      max-width:500px;
+      color:#d8e6e2;
+      font-size:13.5px;
+      line-height:1.45;
+    }
+
+    .an-logo-lockup{
+      position:absolute;
+      top:20px;
+      right:22px;
+      display:flex;
+      align-items:center;
+      gap:7px;
+      font-family:var(--an-display);
+      font-size:24px;
+      line-height:1;
+      font-weight:900;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      color:#fff;
+    }
+
+    .an-logo-check{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      width:22px;
+      height:22px;
+      border-radius:50%;
+      background:var(--an-green-bright);
+      color:#06352d;
+      font-size:15px;
+      font-weight:900;
+      letter-spacing:0;
+    }
+
+    .an-body{
+      padding:18px;
+      background:#fff;
+    }
+
+    .an-source{
+      margin:0;
+      padding:14px 20px;
+      background:var(--an-bg2);
+      border-top:4px solid var(--an-green);
+      color:#777;
+      font-size:12.5px;
+      line-height:1.5;
+    }
+
+    .an-source strong{ color:#333; }
+
+    .team-card-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:12px;
+      align-items:stretch;
+    }
+
+    .team-card{
+      background:#f7faf8;
+      border:1px solid var(--an-border);
+      overflow:hidden;
+    }
+
+    .team-card.knicks{ border-top:5px solid var(--nyk-blue); }
+    .team-card.cavs{ border-top:5px solid var(--cle-wine); }
+
+    .team-card-head{
+      min-height:78px;
+      display:flex;
+      align-items:center;
+      gap:12px;
+      padding:13px 14px;
+      color:#fff;
+    }
+
+    .team-card.knicks .team-card-head{
+      background:
+        radial-gradient(circle at 100% 0%, rgba(245,132,38,.35), transparent 36%),
+        linear-gradient(135deg, #063a7a 0%, #0b4ea2 100%);
+    }
+
+    .team-card.cavs .team-card-head{
+      background:
+        radial-gradient(circle at 100% 0%, rgba(255,184,28,.25), transparent 36%),
+        linear-gradient(135deg, #4d1729 0%, #6f263d 100%);
+    }
+
+    .team-badge{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      width:46px;
+      height:46px;
+      flex:0 0 46px;
+      border:2px solid rgba(255,255,255,.35);
+      border-radius:50%;
+      font-family:var(--an-display);
+      font-size:17px;
+      font-weight:900;
+      line-height:1;
+      letter-spacing:.04em;
+      color:#fff;
+      box-shadow:0 8px 16px rgba(0,0,0,.16);
+    }
+
+    .knicks .team-badge{
+      background:linear-gradient(135deg, var(--nyk-blue), var(--nyk-orange));
+    }
+
+    .cavs .team-badge{
+      background:linear-gradient(135deg, var(--cle-wine), var(--cle-gold));
+      color:#101820;
+    }
+
+    .team-title{
+      min-width:0;
+    }
+
+    .team-title h3{
+      margin:0;
+      font-family:var(--an-display);
+      font-size:24px;
+      line-height:.95;
+      font-weight:900;
+      letter-spacing:.03em;
+      text-transform:uppercase;
+      color:#fff;
+    }
+
+    .team-title span{
+      display:block;
+      margin-top:4px;
+      font-family:var(--an-display);
+      font-size:12px;
+      line-height:1;
+      font-weight:900;
+      letter-spacing:.11em;
+      text-transform:uppercase;
+      color:rgba(255,255,255,.78);
+    }
+
+    .stat-list{
+      display:grid;
+      gap:0;
+      padding:0;
+    }
+
+    .stat-row{
+      display:grid;
+      grid-template-columns:1fr auto;
+      gap:12px;
+      align-items:center;
+      min-height:64px;
+      padding:12px 14px;
+      border-top:1px solid var(--an-border);
+      background:#fff;
+    }
+
+    .stat-row:nth-child(even){ background:#fafcfb; }
+
+    .stat-label{
+      margin:0;
+      color:#4b5563;
+      font-size:12.8px;
+      line-height:1.25;
+      font-weight:700;
+    }
+
+    .stat-label strong{
+      display:block;
+      margin-bottom:3px;
+      font-family:var(--an-display);
+      font-size:13px;
+      line-height:1;
+      font-weight:900;
+      letter-spacing:.09em;
+      text-transform:uppercase;
+      color:#101820;
+    }
+
+    .stat-value{
+      font-family:var(--an-display);
+      font-size:28px;
+      line-height:1;
+      font-weight:900;
+      letter-spacing:.01em;
+      color:#101820;
+      text-align:right;
+      white-space:nowrap;
+    }
+
+    .stat-value.green{ color:var(--an-green-dark); }
+    .stat-value.orange{ color:#c96b12; }
+    .stat-value.wine{ color:var(--cle-wine); }
+
+    .takeaway-grid{
+      display:grid;
+      grid-template-columns:1.2fr 1fr;
+      gap:10px;
+      margin-top:12px;
+    }
+
+    .takeaway-card{
+      position:relative;
+      min-height:112px;
+      padding:16px;
+      background:
+        radial-gradient(circle at 96% 4%, rgba(0,224,154,.12), transparent 34%),
+        linear-gradient(135deg, #071628 0%, #0a2e28 100%);
+      border:1px solid rgba(0,182,122,.38);
+      border-left:5px solid var(--an-green);
+      color:#fff;
+      overflow:hidden;
+    }
+
+    .takeaway-card.light{
+      background:#f7faf8;
+      color:#101820;
+      border:1px solid var(--an-border);
+      border-left:5px solid var(--an-green);
+    }
+
+    .takeaway-card span{
+      display:inline-flex;
+      margin:0 0 9px;
+      padding:6px 9px;
+      background:var(--an-green);
+      color:#071628;
+      font-family:var(--an-display);
+      font-size:11px;
+      line-height:1;
+      font-weight:900;
+      letter-spacing:.11em;
+      text-transform:uppercase;
+    }
+
+    .takeaway-card h3{
+      margin:0;
+      font-family:var(--an-display);
+      font-size:30px;
+      line-height:.98;
+      font-weight:900;
+      letter-spacing:.01em;
+      text-transform:uppercase;
+    }
+
+    .takeaway-card h3 em{
+      font-style:normal;
+      color:var(--an-green-bright);
+    }
+
+    .takeaway-card.light h3 em{ color:var(--an-green-dark); }
+
+    .takeaway-card p{
+      margin:8px 0 0;
+      color:rgba(216,230,226,.86);
+      font-size:13px;
+      line-height:1.45;
+    }
+
+    .takeaway-card.light p{ color:#5f6973; }
+
+    /* Asset 2 */
+    .premium-compare{
+      display:grid;
+      grid-template-columns:1fr 68px 1fr;
+      gap:0;
+      align-items:center;
+      margin-bottom:14px;
+    }
+
+    .premium-box{
+      min-height:188px;
+      padding:16px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      border:1px solid var(--an-border);
+      background:#fff;
+      overflow:hidden;
+      position:relative;
+    }
+
+    .premium-box:after{
+      content:'';
+      position:absolute;
+      top:-44px;
+      right:-44px;
+      width:120px;
+      height:120px;
+      border-radius:50%;
+      opacity:.12;
+      pointer-events:none;
+    }
+
+    .premium-box.knicks{
+      border-top:5px solid var(--nyk-blue);
+      background:
+        radial-gradient(circle at 100% 0%, rgba(11,78,162,.10), transparent 36%),
+        #fff;
+    }
+
+    .premium-box.knicks:after{ background:var(--nyk-orange); }
+
+    .premium-box.cavs{
+      border-top:5px solid var(--cle-wine);
+      background:
+        radial-gradient(circle at 100% 0%, rgba(111,38,61,.10), transparent 36%),
+        #fff;
+    }
+
+    .premium-box.cavs:after{ background:var(--cle-gold); }
+
+    .premium-team{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      position:relative;
+      z-index:2;
+    }
+
+    .premium-team .team-badge{
+      width:42px;
+      height:42px;
+      flex-basis:42px;
+      font-size:15px;
+      border-color:rgba(16,24,32,.12);
+    }
+
+    .premium-team h3{
+      margin:0;
+      font-family:var(--an-display);
+      font-size:27px;
+      line-height:.95;
+      font-weight:900;
+      text-transform:uppercase;
+      color:#101820;
+    }
+
+    .premium-team span{
+      display:block;
+      margin-top:4px;
+      font-family:var(--an-display);
+      font-size:12px;
+      line-height:1;
+      font-weight:900;
+      letter-spacing:.1em;
+      text-transform:uppercase;
+      color:#6b7280;
+    }
+
+    .premium-amount{
+      position:relative;
+      z-index:2;
+      margin:18px 0 0;
+      font-family:var(--an-display);
+      font-size:56px;
+      line-height:.9;
+      font-weight:900;
+      letter-spacing:-.015em;
+      color:#101820;
+    }
+
+    .premium-box.knicks .premium-amount{ color:var(--an-green-dark); }
+    .premium-box.cavs .premium-amount{ color:#101820; }
+
+    .greater-than{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      width:68px;
+      height:68px;
+      margin:0 auto;
+      background:#071628;
+      color:var(--an-green-bright);
+      border:3px solid var(--an-green);
+      border-radius:50%;
+      font-family:var(--an-display);
+      font-size:42px;
+      line-height:1;
+      font-weight:900;
+      z-index:3;
+      box-shadow:0 12px 24px rgba(16,24,32,.18);
+    }
+
+    .premium-callout{
+      display:grid;
+      grid-template-columns:68px 1fr;
+      gap:14px;
+      align-items:center;
+      padding:16px;
+      background:#0d1714;
+      border:1px solid rgba(0,182,122,.35);
+      border-left:5px solid var(--an-green);
+      color:#fff;
+    }
+
+    .icon-circle{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      width:58px;
+      height:58px;
+      border-radius:50%;
+      background:rgba(0,182,122,.12);
+      border:1px solid rgba(0,224,154,.35);
+      color:var(--an-green-bright);
+      font-family:var(--an-display);
+      font-size:28px;
+      font-weight:900;
+      flex:0 0 58px;
+    }
+
+    .premium-callout p{
+      margin:0;
+      font-size:17px;
+      line-height:1.35;
+      font-weight:700;
+      color:#eafff6;
+    }
+
+    .premium-callout strong{
+      color:var(--an-green-bright);
+      font-family:var(--an-display);
+      font-size:24px;
+      line-height:1;
+      letter-spacing:.03em;
+      text-transform:uppercase;
+    }
+
+    .micro-line{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      margin-top:12px;
+      padding:10px 12px;
+      background:#f7faf8;
+      border:1px solid var(--an-border);
+      color:#374151;
+      font-family:var(--an-display);
+      font-size:15px;
+      line-height:1;
+      font-weight:900;
+      letter-spacing:.06em;
+      text-transform:uppercase;
+      text-align:center;
+    }
+
+    .micro-line strong{ color:var(--an-green-dark); }
+
+    /* Asset 3 */
+    .value-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:12px;
+    }
+
+    .value-card{
+      border:1px solid var(--an-border);
+      background:#fff;
+      overflow:hidden;
+    }
+
+    .value-card.knicks{ border-top:5px solid var(--nyk-blue); }
+    .value-card.cavs{ border-top:5px solid var(--cle-wine); }
+
+    .value-card .team-card-head{ min-height:72px; }
+
+    .value-rows{
+      display:grid;
+    }
+
+    .value-row{
+      display:grid;
+      grid-template-columns:1fr auto;
+      gap:12px;
+      align-items:center;
+      padding:15px 14px;
+      border-top:1px solid var(--an-border);
+      background:#fff;
+    }
+
+    .value-row:nth-child(even){ background:#fafcfb; }
+
+    .value-label{
+      margin:0;
+      font-family:var(--an-display);
+      font-size:14px;
+      line-height:1.05;
+      font-weight:900;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      color:#101820;
+    }
+
+    .value-sub{
+      display:block;
+      margin-top:5px;
+      font-family:var(--an-serif);
+      font-size:12.2px;
+      line-height:1.3;
+      font-weight:700;
+      letter-spacing:0;
+      text-transform:none;
+      color:#6b7280;
+    }
+
+    .value-number{
+      font-family:var(--an-display);
+      font-size:31px;
+      line-height:.95;
+      font-weight:900;
+      text-align:right;
+      white-space:nowrap;
+      color:#101820;
+    }
+
+    .value-number.green{ color:var(--an-green-dark); }
+    .value-number.red{ color:#b91c1c; }
+
+    .verdict{
+      margin-top:12px;
+      padding:16px;
+      background:
+        radial-gradient(circle at 98% 0%, rgba(0,224,154,.10), transparent 30%),
+        #f7faf8;
+      border:1px solid var(--an-border);
+      border-left:5px solid var(--an-green);
+    }
+
+    .verdict h3{
+      margin:0 0 12px;
+      font-family:var(--an-display);
+      font-size:24px;
+      line-height:1;
+      font-weight:900;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      color:#101820;
+      text-align:center;
+    }
+
+    .verdict-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:10px;
+    }
+
+    .verdict-pill{
+      min-height:86px;
+      padding:13px;
+      background:#fff;
+      border:1px solid var(--an-border);
+      border-top:4px solid var(--an-green);
+    }
+
+    .verdict-pill span{
+      display:block;
+      margin-bottom:8px;
+      color:#6b7280;
+      font-size:12.5px;
+      line-height:1.25;
+      font-weight:700;
+    }
+
+    .verdict-pill strong{
+      display:block;
+      font-family:var(--an-display);
+      font-size:26px;
+      line-height:.95;
+      font-weight:900;
+      letter-spacing:.03em;
+      text-transform:uppercase;
+      color:var(--an-green-dark);
+    }
+
+    .verdict-note{
+      margin:12px 0 0;
+      padding:10px 12px;
+      background:#101820;
+      color:#d8e6e2;
+      border-left:5px solid var(--an-green);
+      font-size:13px;
+      line-height:1.45;
+      text-align:center;
+    }
+
+    @media (max-width:680px){
+      .an-page{ padding:0; }
+      .an-intro{ margin:0; }
+      .an-download-row{ padding:0 12px; }
+      .an-asset-shell{ margin-bottom:18px; }
+      .an-graphic{ border-left:0; border-right:0; }
+      .an-top{ padding-right:22px; padding-top:58px; }
+      .an-logo-lockup{ left:22px; right:auto; top:18px; }
+      .team-card-grid,
+      .takeaway-grid,
+      .value-grid,
+      .verdict-grid{
+        grid-template-columns:1fr;
+      }
+      .premium-compare{
+        grid-template-columns:1fr;
+        gap:10px;
+      }
+      .greater-than{
+        transform:rotate(90deg);
+      }
+      .premium-amount{
+        font-size:48px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="an-page">
+    <section class="an-intro">
+      <h1>Knicks vs Cavaliers Playoff Premium Assets</h1>
+      <p>Three Action Network-style HTML visuals for outreach. Each asset can be downloaded as a PNG using its own button.</p>
+    </section>
+
+    <!-- ASSET 1 -->
+    <section class="an-asset-shell">
+      <div class="an-download-row">
+        <strong>Asset 1: Head-to-head comparison</strong>
+        <button class="an-btn" type="button" data-download="asset-head-to-head" data-filename="knicks-cavaliers-playoff-price-payoff.png">Download Image</button>
+      </div>
+
+      <article class="an-graphic" id="asset-head-to-head">
+        <header class="an-top">
+          <div class="an-logo-lockup">Action <span class="an-logo-check">✓</span></div>
+          <span class="an-kicker">NBA Playoff Premium</span>
+          <h2>Knicks vs Cavaliers</h2>
+          <p>Playoff price vs playoff payoff | Family of four per playoff game</p>
+        </header>
+
+        <div class="an-body">
+          <div class="team-card-grid">
+            <section class="team-card knicks">
+              <div class="team-card-head">
+                <div class="team-badge">NYK</div>
+                <div class="team-title">
+                  <h3>New York Knicks</h3>
+                  <span>Most expensive outing</span>
+                </div>
+              </div>
+
+              <div class="stat-list">
+                <div class="stat-row">
+                  <p class="stat-label"><strong>Playoff family cost</strong>Total cost for a family of four</p>
+                  <div class="stat-value">$3,611.73</div>
+                </div>
+                <div class="stat-row">
+                  <p class="stat-label"><strong>Playoff premium</strong>Extra vs regular-season cost</p>
+                  <div class="stat-value green">+$1,481.20</div>
+                </div>
+                <div class="stat-row">
+                  <p class="stat-label"><strong>Regular-season family cost</strong>Baseline family outing</p>
+                  <div class="stat-value">$2,130.53</div>
+                </div>
+                <div class="stat-row">
+                  <p class="stat-label"><strong>Playoff wins</strong>Postseason wins</p>
+                  <div class="stat-value">12</div>
+                </div>
+                <div class="stat-row">
+                  <p class="stat-label"><strong>Outcome</strong>Final playoff result</p>
+                  <div class="stat-value green">NBA Finals</div>
+                </div>
+              </div>
+            </section>
+
+            <section class="team-card cavs">
+              <div class="team-card-head">
+                <div class="team-badge">CLE</div>
+                <div class="team-title">
+                  <h3>Cleveland Cavaliers</h3>
+                  <span>Least expensive outing</span>
+                </div>
+              </div>
+
+              <div class="stat-list">
+                <div class="stat-row">
+                  <p class="stat-label"><strong>Playoff family cost</strong>Total cost for a family of four</p>
+                  <div class="stat-value">$1,330.96</div>
+                </div>
+                <div class="stat-row">
+                  <p class="stat-label"><strong>Playoff premium</strong>Extra vs regular-season cost</p>
+                  <div class="stat-value green">+$66.16</div>
+                </div>
+                <div class="stat-row">
+                  <p class="stat-label"><strong>Regular-season family cost</strong>Baseline family outing</p>
+                  <div class="stat-value">$1,264.80</div>
+                </div>
+                <div class="stat-row">
+                  <p class="stat-label"><strong>Playoff wins</strong>Postseason wins</p>
+                  <div class="stat-value">8</div>
+                </div>
+                <div class="stat-row">
+                  <p class="stat-label"><strong>Outcome</strong>Final playoff result</p>
+                  <div class="stat-value wine">Swept in ECF</div>
+                </div>
+              </div>
+            </section>
+          </div>
+
+          <div class="takeaway-grid">
+            <div class="takeaway-card">
+              <span>Key stat</span>
+              <h3>Knicks fans paid <em>2.7x more</em> per playoff outing.</h3>
+            </div>
+            <div class="takeaway-card light">
+              <span>Price vs payoff</span>
+              <h3>The deepest run came with the <em>highest price tag</em>.</h3>
+              <p>New York reached the NBA Finals, while Cleveland exited after being swept in the Eastern Conference Finals.</p>
+            </div>
+          </div>
+        </div>
+
+        <p class="an-source"><strong>Source:</strong> The Action Network NBA Playoff Premium analysis. Family cost includes tickets, food and drinks, merchandise, parking and child admission policies.</p>
+      </article>
+    </section>
+
+    <!-- ASSET 2 -->
+    <section class="an-asset-shell">
+      <div class="an-download-row">
+        <strong>Asset 2: The premium alone</strong>
+        <button class="an-btn" type="button" data-download="asset-premium-alone" data-filename="knicks-premium-vs-cavs-total-cost.png">Download Image</button>
+      </div>
+
+      <article class="an-graphic" id="asset-premium-alone">
+        <header class="an-top">
+          <div class="an-logo-lockup">Action <span class="an-logo-check">✓</span></div>
+          <span class="an-kicker">One stat says it all</span>
+          <h2>The Premium Alone</h2>
+          <p>Knicks playoff premium compared with the Cavaliers’ total playoff outing</p>
+        </header>
+
+        <div class="an-body">
+          <div class="premium-compare">
+            <section class="premium-box knicks">
+              <div class="premium-team">
+                <div class="team-badge">NYK</div>
+                <div>
+                  <h3>Knicks</h3>
+                  <span>Playoff premium</span>
+                </div>
+              </div>
+              <div class="premium-amount">+$1,481.20</div>
+            </section>
+
+            <div class="greater-than">&gt;</div>
+
+            <section class="premium-box cavs">
+              <div class="premium-team">
+                <div class="team-badge">CLE</div>
+                <div>
+                  <h3>Cavs</h3>
+                  <span>Total playoff outing</span>
+                </div>
+              </div>
+              <div class="premium-amount">$1,330.96</div>
+            </section>
+          </div>
+
+          <div class="premium-callout">
+            <div class="icon-circle">$</div>
+            <p>The extra amount Knicks families paid on top of regular-season prices was <strong>$150.24 more</strong> than the entire Cavs playoff outing.</p>
+          </div>
+
+          <div class="micro-line">
+            <strong>Same postseason.</strong> Very different price tags.
+          </div>
+        </div>
+
+        <p class="an-source"><strong>Source:</strong> The Action Network NBA Playoff Premium analysis. Premium is the difference between regular-season and playoff family cost.</p>
+      </article>
+    </section>
+
+    <!-- ASSET 3 -->
+    <section class="an-asset-shell">
+      <div class="an-download-row">
+        <strong>Asset 3: Value vs payoff</strong>
+        <button class="an-btn" type="button" data-download="asset-value-payoff" data-filename="knicks-cavaliers-playoff-value-payoff.png">Download Image</button>
+      </div>
+
+      <article class="an-graphic" id="asset-value-payoff">
+        <header class="an-top">
+          <div class="an-logo-lockup">Action <span class="an-logo-check">✓</span></div>
+          <span class="an-kicker">Cost vs payoff</span>
+          <h2>Who Got Better Playoff Value?</h2>
+          <p>A side-by-side look at what each fanbase paid — and what each team delivered</p>
+        </header>
+
+        <div class="an-body">
+          <div class="value-grid">
+            <section class="value-card knicks">
+              <div class="team-card-head">
+                <div class="team-badge">NYK</div>
+                <div class="team-title">
+                  <h3>New York Knicks</h3>
+                  <span>Highest cost, deepest run</span>
+                </div>
+              </div>
+
+              <div class="value-rows">
+                <div class="value-row">
+                  <p class="value-label">Cost per playoff win <span class="value-sub">$3,611.73 divided by 12 playoff wins</span></p>
+                  <div class="value-number">$301</div>
+                </div>
+                <div class="value-row">
+                  <p class="value-label">Family playoff outing <span class="value-sub">Most expensive total in the analysis</span></p>
+                  <div class="value-number">$3,611.73</div>
+                </div>
+                <div class="value-row">
+                  <p class="value-label">Playoff result <span class="value-sub">12 wins and a trip to the Finals</span></p>
+                  <div class="value-number green">NBA Finals</div>
+                </div>
+              </div>
+            </section>
+
+            <section class="value-card cavs">
+              <div class="team-card-head">
+                <div class="team-badge">CLE</div>
+                <div class="team-title">
+                  <h3>Cleveland Cavaliers</h3>
+                  <span>Lowest cost, earlier exit</span>
+                </div>
+              </div>
+
+              <div class="value-rows">
+                <div class="value-row">
+                  <p class="value-label">Cost per playoff win <span class="value-sub">$1,330.96 divided by 8 playoff wins</span></p>
+                  <div class="value-number">$166</div>
+                </div>
+                <div class="value-row">
+                  <p class="value-label">Family playoff outing <span class="value-sub">Least expensive total in the analysis</span></p>
+                  <div class="value-number">$1,330.96</div>
+                </div>
+                <div class="value-row">
+                  <p class="value-label">Playoff result <span class="value-sub">Eight wins before the ECF sweep</span></p>
+                  <div class="value-number red">Swept in ECF</div>
+                </div>
+              </div>
+            </section>
+          </div>
+
+          <section class="verdict">
+            <h3>The Verdict</h3>
+            <div class="verdict-grid">
+              <div class="verdict-pill">
+                <span>Cheaper value per win</span>
+                <strong>Cavaliers</strong>
+              </div>
+              <div class="verdict-pill">
+                <span>Biggest overall payoff</span>
+                <strong>Knicks</strong>
+              </div>
+            </div>
+            <p class="verdict-note">Knicks fans paid more for the deeper run. Cavs fans paid less, but exited earlier.</p>
+          </section>
+        </div>
+
+        <p class="an-source"><strong>Source:</strong> The Action Network NBA Playoff Premium analysis. Cost-per-win is a simple comparison point based on family playoff cost divided by playoff wins.</p>
+      </article>
+    </section>
+  </main>
+
+  <script>
+    async function downloadAsset(elementId, filename){
+      const element = document.getElementById(elementId);
+      if(!element) return;
+
+      element.classList.add('is-exporting');
+
+      await new Promise(resolve => setTimeout(resolve, 120));
+
+      const canvas = await html2canvas(element, {
+        scale: 4,
+        backgroundColor: '#ffffff',
+        useCORS: true,
+        allowTaint: true,
+        logging: false,
+        width: 720,
+        windowWidth: 720
+      });
+
+      element.classList.remove('is-exporting');
+
+      const link = document.createElement('a');
+      link.download = filename || elementId + '.png';
+      link.href = canvas.toDataURL('image/png');
+      link.click();
+    }
+
+    document.querySelectorAll('[data-download]').forEach(button => {
+      button.addEventListener('click', () => {
+        downloadAsset(button.dataset.download, button.dataset.filename);
+      });
+    });
+  </script>
+</body>
+</html>
