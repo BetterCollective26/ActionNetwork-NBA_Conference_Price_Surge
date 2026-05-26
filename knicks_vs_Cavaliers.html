@@ -650,21 +650,57 @@
     .value-card.knicks{ border-top:5px solid var(--nyk-blue); }
     .value-card.cavs{ border-top:5px solid var(--cle-wine); }
 
-    .value-card .team-card-head{ min-height:78px; }
+    .value-card .team-card-head{
+      min-height:82px;
+      padding:13px 12px;
+      gap:10px;
+      overflow:visible;
+    }
+
+    /* Fix for Asset 3: these cards use .value-card instead of .team-card,
+       so they need their own branded header backgrounds. Without this,
+       the white team-name text sits on a white background. */
+    .value-card.knicks .team-card-head{
+      background:
+        radial-gradient(circle at 100% 0%, rgba(245,132,38,.35), transparent 36%),
+        linear-gradient(135deg, #063a7a 0%, #0b4ea2 100%);
+    }
+
+    .value-card.cavs .team-card-head{
+      background:
+        radial-gradient(circle at 100% 0%, rgba(255,184,28,.25), transparent 36%),
+        linear-gradient(135deg, #4d1729 0%, #6f263d 100%);
+    }
 
     .value-card .team-logo-wrap{
-      width:54px;
-      height:54px;
-      flex-basis:54px;
+      width:52px;
+      height:52px;
+      flex-basis:52px;
     }
 
     .value-card .team-logo{
-      width:48px;
-      height:48px;
+      width:46px;
+      height:46px;
+    }
+
+    .value-card .team-title{
+      flex:1 1 auto;
+      min-width:0;
+      overflow:visible;
     }
 
     .value-card .team-title h3{
-      font-size:24px;
+      font-size:22px;
+      white-space:normal;
+      overflow:visible;
+      text-overflow:clip;
+      max-width:100%;
+    }
+
+    .value-card .team-title span{
+      font-size:11px;
+      line-height:1.05;
+      white-space:normal;
     }
 
     .value-rows{
